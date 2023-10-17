@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RoadDefectService.Models
+﻿namespace RoadDefectService.Models
 {
     public class Image
     {

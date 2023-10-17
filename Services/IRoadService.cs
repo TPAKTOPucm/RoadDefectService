@@ -4,9 +4,9 @@ namespace RoadDefectService.Services
 {
     public interface IRoadService
     {
-        Defects PostPhoto(byte[] image);
+        Defects PostPhoto(Image image);
         ICollection<Defects> GetDefects();
         bool SetDefect(Defects defect);
-        bool RemoveDefect(int x, int y);
+        Defects RemoveDefect(int x, int y);
     }
 }

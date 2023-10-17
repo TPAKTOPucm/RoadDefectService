@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using RoadDefectService.Models;
+using RoadDefectService.Services;
 
 namespace RoadDefectService.Controllers
 {
@@ -8,22 +10,37 @@ namespace RoadDefectService.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
+        private readonly IRoadService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRoadService service)
         {
             _logger = logger;
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok();
+            return Ok(_service.GetDefects());
         }
 
         [HttpPost]
-        public IActionResult Post(byte[] image)
+        public IActionResult Post(Image image)
         {
+            return Ok(_service.PostPhoto(image));
+        }
+
+        [HttpPut]
+        public IActionResult Put(Defects defects)
+        {
+            _service.SetDefect(defects);
             return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int x, int y)
+        {
+            return Ok(_service.RemoveDefect(x, y));
         }
     }
 }
